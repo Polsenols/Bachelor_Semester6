@@ -25,6 +25,7 @@ public class ScaleManipulator : MonoBehaviour
     {
         SetLineScale();
 
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -45,14 +46,10 @@ public class ScaleManipulator : MonoBehaviour
                 }
             }
         }
-
+        */
     }
 
-    void MoveBoxManipulator()
-    {
-
-    }
-
+    /*
     private IEnumerator Move_axis(Vector3 direction, MoveType moveType)
     {
         print("coroutine started");
@@ -75,7 +72,7 @@ public class ScaleManipulator : MonoBehaviour
             }
             yield return null;
         }
-    }
+    }*/
 
     void SetLineScale()
     {
