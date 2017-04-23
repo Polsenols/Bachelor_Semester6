@@ -31,7 +31,7 @@ public class MoveManipulator : MonoBehaviour {
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, 100f, indicatorLayer.value))
+            if(Physics.Raycast(ray, out hit, 1000f, indicatorLayer.value))
             {
                 print("axis hit");
                 if(hit.collider.gameObject == x_axis)
