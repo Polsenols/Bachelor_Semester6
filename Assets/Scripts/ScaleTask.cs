@@ -44,13 +44,5 @@ public class ScaleTask : MonoBehaviour {
         {
             return false;
         }
-
-    }
-
-    public bool GetScaleSuccess() { return scaledToTarget; }
-    public void SetTarget(Transform transform)
-    {
-        target = transform;
-        targetScale = target.localScale;
     }
 }

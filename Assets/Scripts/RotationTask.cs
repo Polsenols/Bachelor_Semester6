@@ -44,13 +44,5 @@ public class RotationTask : MonoBehaviour {
         {
             return false;
         }
-
-    }
-
-    public bool GetRotationSuccess() { return rotatedToTarget; }
-    public void SetTarget(Transform transform)
-    {
-        target = transform;
-        targetRotation = target.rotation.eulerAngles;
     }
 }
