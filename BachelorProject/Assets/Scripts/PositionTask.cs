@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PositionTask : MonoBehaviour {
 
-    public Transform target;
+    public Transform goalObj;
     public float allowedError;
 
     private bool positionedToTarget;
 
     private Vector3 objectPos;
     private Vector3 targetPos;
-	
-	// Update is called once per frame
+    private Transform taskObj;
+    void Start()
+    {
+        SetTarget(goalObj);
+    }
+
 	void Update ()
     {
-        objectPos = gameObject.transform.position;
+        objectPos = taskObj.position;
 
         if (WithinTargetPosition(objectPos, targetPos))
         {
@@ -32,11 +36,13 @@ public class PositionTask : MonoBehaviour {
         bool xWithin = false;
         bool yWithin = false;
         bool zWithin = false;
-        if (oPos.x < tPos.x + allowedError && oPos.x > tPos.x - allowedError) { xWithin = true; }
-        if (oPos.y < tPos.y + allowedError && oPos.y > tPos.y - allowedError) { yWithin = true; }
-        if (oPos.z < tPos.z + allowedError && oPos.z > tPos.z - allowedError) { zWithin = true; }
-
-        if(xWithin && yWithin && zWithin)
+        if (oPos.x >= tPos.x - allowedError && oPos.x <= tPos.x + allowedError) { xWithin = true; }
+        if (oPos.y <= tPos.y + allowedError && oPos.y > tPos.y - allowedError) { yWithin = true; }
+        if (oPos.z >= tPos.z - allowedError && oPos.z <= tPos.z + allowedError) { zWithin = true; }
+        Debug.Log("xwithin: " + xWithin);
+        Debug.Log("ywithin: " + yWithin);
+        Debug.Log("zwithin: " + zWithin);
+        if (xWithin && yWithin && zWithin)
         {
             return true;
         }
@@ -54,7 +60,12 @@ public class PositionTask : MonoBehaviour {
 
     public void SetTarget(Transform transform)
     {
-        target = transform;
-        targetPos = target.position;
+        goalObj = transform;
+        targetPos = goalObj.position;
+    }
+
+    public void SetTaskObject(Transform taskObj)
+    {
+        taskObj = this.taskObj;
     }
 }

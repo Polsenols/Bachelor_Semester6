@@ -8,6 +8,7 @@ namespace RuntimeGizmos
 	[RequireComponent(typeof(Camera))]
 	public class TransformGizmo : MonoBehaviour
 	{
+        public LayerMask targetMask;
 		public TransformSpace space = TransformSpace.Global;
 		public TransformType type = TransformType.Move;
 
@@ -16,6 +17,8 @@ namespace RuntimeGizmos
 		public KeyCode SetRotateType = KeyCode.E;
 		public KeyCode SetScaleType = KeyCode.R;
 		public KeyCode SetSpaceToggle = KeyCode.X;
+
+        public bool canMove, canRotate, canScale;
 
 		Color xColor = new Color(1, 0, 0, 0.8f);
 		Color yColor = new Color(0, 1, 0, 0.8f);
@@ -118,9 +121,9 @@ namespace RuntimeGizmos
 
 		void SetSpaceAndType()
 		{
-			if(Input.GetKeyDown(SetMoveType)) type = TransformType.Move;
-			else if(Input.GetKeyDown(SetRotateType)) type = TransformType.Rotate;
-			else if(Input.GetKeyDown(SetScaleType)) type = TransformType.Scale;
+			if(Input.GetKeyDown(SetMoveType) && canMove) type = TransformType.Move;
+			else if(Input.GetKeyDown(SetRotateType) && canRotate) type = TransformType.Rotate;
+			else if(Input.GetKeyDown(SetScaleType) && canScale) type = TransformType.Scale;
 
 			if(Input.GetKeyDown(SetSpaceToggle))
 			{
@@ -221,7 +224,7 @@ namespace RuntimeGizmos
 			if(selectedAxis == Axis.None && Input.GetMouseButtonDown(0))
 			{
 				RaycastHit hitInfo; 
-				if(Physics.Raycast(myCamera.ScreenPointToRay(Input.mousePosition), out hitInfo))
+				if(Physics.Raycast(myCamera.ScreenPointToRay(Input.mousePosition), out hitInfo, targetMask))
 				{
 					target = hitInfo.transform;
 				}else{

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TaskController : MonoBehaviour {
 
-    public Transform target;
+    public Transform target, taskObj;
 
     public bool positionTask;
     public bool rotationTask;
@@ -25,12 +25,13 @@ public class TaskController : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        startColor = gameObject.GetComponent<Renderer>().material.color;
+
 
         posT = gameObject.GetComponent<PositionTask>();
         rotT = gameObject.GetComponent<RotationTask>();
         scaleT = gameObject.GetComponent<ScaleTask>();
 
+        posT.SetTaskObject(taskObj);
         posT.SetTarget(target);
         rotT.SetTarget(target);
         scaleT.SetTarget(target);
@@ -43,7 +44,7 @@ public class TaskController : MonoBehaviour {
         transformSuccess = TransformCheck();
         rotateSuccess = RotationCheck();
         scaleSucess = ScaleCheck();
-
+        /*
         if (transformSuccess && rotateSuccess && scaleSucess)
         {
             gameObject.GetComponent<Renderer>().material.color = successColor;
@@ -57,7 +58,7 @@ public class TaskController : MonoBehaviour {
         if(!positionTask && !rotationTask && !scaleTask)
         {
             gameObject.GetComponent<Renderer>().material.color = startColor;
-        }
+        }*/
 	}
 
     private bool TransformCheck()
