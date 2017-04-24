@@ -77,8 +77,11 @@ public class ScaleManipulator : MonoBehaviour
     void SetLineScale()
     {
         line_forward.localScale = new Vector3(-box_forward.localPosition.x, 1, 1);
+        line_forward.GetComponent<Renderer>().material = box_forward.GetComponent<Renderer>().material;
         line_right.localScale = new Vector3(1, 1, box_right.localPosition.z);
+        line_right.GetComponent<Renderer>().material = box_right.GetComponent<Renderer>().material;
         line_up.localScale = new Vector3(1, box_up.localPosition.y, 1);
+        line_up.GetComponent<Renderer>().material = box_up.GetComponent<Renderer>().material;
     }
 
 }

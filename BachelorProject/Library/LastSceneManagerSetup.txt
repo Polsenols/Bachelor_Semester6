@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/AllTasks.unity
+- path: Assets/RuntimeGizmo/ExampleScene.unity
   isLoaded: 1
   isActive: 1
